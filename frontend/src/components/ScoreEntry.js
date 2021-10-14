@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react'
 const ScoreEntry = () => {
     const [ball, setBall] = useState("Legal")
     const [bat, setBat] = useState("No Runs")
-    const [dismissal, setDismissal] = useState("none")
-    const [isLegalBall, setIsLegalBall] = useState(true)
-    const [runsInBall, setRunsInBall] = useState(0)
+    const [dismissal, setDismissal] = useState("None")
 
     const [batsman1, setBatsman1] = useState({
         name: "Aadil",
@@ -46,27 +44,6 @@ const ScoreEntry = () => {
         setDismissal(e.target.value)
     }
 
-    useEffect(() => {
-        if (ball === "Legal") {
-            if (bat == "Single") {
-                setRunsInBall(1)
-            } else if (bat === "Double") {
-                setRunsInBall(2)
-            } else if (bat === "Three Runs") {
-                setRunsInBall(3)
-            } else if (bat === "Boundary") {
-                setRunsInBall(4)
-            } else if (bat === "Five Runs") {
-                setRunsInBall(5)
-            } else if (bat === "Six") {
-                setRunsInBall(6)
-            } else {
-                setRunsInBall(0)
-            }
-        }
-
-    }, [ball, bat])
-    console.log(runsInBall)
     const matchBallHandler = (e) => {
         e.preventDefault()
         setMatchBall((prevState) => {
@@ -81,7 +58,6 @@ const ScoreEntry = () => {
             }
         }
         )
-
     }
     return (
         <div>
@@ -127,6 +103,10 @@ const ScoreEntry = () => {
                 </ul>
                 <p> Dismissal </p>
                 <ul>
+                    <li><label><input type="radio" name="dismissal" value="None" checked={dismissal === "None"} onChange={dismissalHandler} />
+                        None
+                    </label>
+                    </li>
                     <li><label><input type="radio" name="dismissal" value="Bowled" checked={dismissal === "Bowled"} onChange={dismissalHandler} />
                         Bowled
                     </label>
