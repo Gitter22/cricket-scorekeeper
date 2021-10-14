@@ -11,80 +11,6 @@ mongoose
   });
 
 const playerseed = [
-  {
-    name: "Kohli",
-    matches: [
-      {
-        matchId: "613c62b11a9ba346474aeb20",
-        matchData: {
-          battingStats: {
-            runsScored: 15,
-            ballsFaced: 22,
-            boundaries: 1,
-            sixes: 3,
-          },
-          bowlingStats: {
-            ballsThrown: 12,
-            runsConceded: 5,
-            wicketsTaken: 1,
-          },
-        },
-      },
-      {
-        matchId: "613c62b11a9ba346474aeb20",
-        matchData: {
-          battingStats: {
-            runsScored: 15,
-            ballsFaced: 22,
-            boundaries: 1,
-            sixes: 3,
-          },
-          bowlingStats: {
-            ballsThrown: 12,
-            runsConceded: 5,
-            wicketsTaken: 1,
-          },
-        },
-      },
-    ],
-  },
-  {
-    name: "Kohli",
-    matches: [
-      {
-        matchId: "",
-        matchData: {
-          battingStats: {
-            runsScored: 15,
-            ballsFaced: 22,
-            boundaries: 1,
-            sixes: 3,
-          },
-          bowlingStats: {
-            ballsThrown: 12,
-            runsConceded: 5,
-            wicketsTaken: 1,
-          },
-        },
-      },
-      {
-        matchId: "",
-        matchData: {
-          battingStats: {
-            runsScored: 15,
-            ballsFaced: 22,
-            boundaries: 1,
-            sixes: 3,
-          },
-          bowlingStats: {
-            ballsThrown: 12,
-            runsConceded: 5,
-            wicketsTaken: 1,
-          },
-        },
-      },
-    ],
-  },
 ];
 
 const seedData = async () => {
@@ -96,7 +22,7 @@ const clearSeed = async () => {
   await Player.deleteMany({});
 };
 
-const runseed=async ()=>{
+const runseed = async () => {
   await clearSeed()
   await seedData()
 }

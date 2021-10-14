@@ -53,8 +53,6 @@ const ScoreEntry = () => {
                 ballType: ball,
                 runType: bat,
                 dismissalType: dismissal,
-                onStrikeBatsman: (bat === "Single" || "Three Runs" || "Five Runs") ? batsman1.name : batsman2.name,
-                nonStrikeBatsman: (bat === "No Runs" || "Double" || "Boundary" || "Six") ? batsman2.name : batsman1.name
             }
         }
         )

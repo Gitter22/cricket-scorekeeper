@@ -13,10 +13,10 @@ const BallSchema = new Schema({
     enum: ["1st", "2nd"],
   },
   ballNumber: { type: Number },
-  bowler: {
-    type: Schema.Types.ObjectId,
-    ref: Player,
-  },
+  ballType: { type: String },
+  runType: { type: String },
+  dismissalType: { type: String },
+
   onStrikeBatsman: {
     type: Schema.Types.ObjectId,
     ref: Player,
@@ -25,11 +25,11 @@ const BallSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: Player,
   },
-  runs: { type: Number },
-  event: {
-    type: String,
-    enum: ["dotball", "single", "double", "3Runs", "boundary", "six", "wicket"],
+  bowler: {
+    type: Schema.Types.ObjectId,
+    ref: Player,
   },
+
 });
 
 module.exports = new mongoose.model("MatchBall", BallSchema);

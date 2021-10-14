@@ -1,17 +1,17 @@
-const express=require('express')
-const router=express.Router({mergeParams:true})
-const Match=require('../models/match')
+const express = require('express')
+const router = express.Router({ mergeParams: true })
+const Match = require('../models/matches')
 
-router.get('/', async (req,res)=>{
-    const matches=await Match.find({})
+router.get('/', async (req, res) => {
+    const matches = await Match.find({})
     res.send(matches)
 })
 
-router.post('/', async (req,res)=>{
-    const data=req.body
-   const match=await new Match(data)
-   await match.save()
-   res.send('Data added')
+router.post('/', async (req, res) => {
+    const data = req.body
+    const match = await new Match(data)
+    await match.save()
+    res.send('Data added')
 })
 
 // app.get('/matches/new',(req,res)=>{
@@ -32,4 +32,4 @@ router.post('/', async (req,res)=>{
 
 // })
 
-module.exports=router
+module.exports = router
