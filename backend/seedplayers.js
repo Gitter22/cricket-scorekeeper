@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Player = require("./models/player");
+const Player = require("./models/players");
 
 mongoose
   .connect("mongodb://localhost:27017/cricketscorekeeper")

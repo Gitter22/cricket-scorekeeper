@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Match = require("./match");
-const Player = require('./player')
+const Player = require('./players')
 
 const BallSchema = new Schema({
   matchId: {
