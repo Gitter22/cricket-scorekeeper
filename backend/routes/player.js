@@ -8,9 +8,10 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const data = req.body
-    const player = await new Player(data)
-    await player.save()
+    console.log(req.body)
+    // const data = req.body
+    // const player = await new Player(data)
+    // await player.save()
     res.send('Data added')
 })
 
