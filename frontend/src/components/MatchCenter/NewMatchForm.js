@@ -1,26 +1,61 @@
-import React, { useRef, useState } from 'react'
-
+import React, { useRef, useState, useEffect } from 'react'
 
 const NewMatchForm = () => {
-    const team1 = useRef()
-    const team2 = useRef()
+    const [players, setPlayers] = useState([])
+    const [availablePlayers, setAvailablePlayers] = useState([players])
+
+    const team1Ref = useRef()
+    const team2Ref = useRef()
+    const locationRef = useRef()
     const [team1Players, setTeam1Players] = useState([])
     const [team2Players, setTeam2Players] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:3001/players')
+            .then(res => res.json())
+            .then(data => setPlayers(data))
+            .catch(e => { console.log("Could not load plyers" + e) })
+    }, [])
 
     const team1PlayersHandler = (e) => {
         setTeam1Players(Array.from(e.target.selectedOptions, option => option.value))
     }
 
+    useEffect(() => {
+        setAvailablePlayers(players.filter(e => !team1Players.includes(e._id)))
+    }, [team1Players, players])
+
+
     const team2PlayersHandler = (e) => {
         setTeam2Players(Array.from(e.target.selectedOptions, option => option.value))
-
     }
-
     const newMatchHandler = (e) => {
         e.preventDefault()
-        console.log(team1Players, team2Players)
-        console.log(team1.current.value, team2.current.value)
+        const newMatchData = {
+            team1: {
+                name: team1Ref.current.value,
+                players: team1Players
+            },
+            team2: {
+                name: team2Ref.current.value,
+                players: team2Players
+            },
+            location: locationRef.current.value
+        }
+        fetch('http://localhost:3001/matches', {
+            method: 'POST',
+            body: JSON.stringify(newMatchData),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(e => { console.log("Error Saving Match" + e) })
     }
+
+
 
     return (
         <div>
@@ -29,7 +64,7 @@ const NewMatchForm = () => {
                 <div>
                     <label> Enter Team 1 name
                         <div>
-                            <input type="text" ref={team1} />
+                            <input type="text" ref={team1Ref} />
                         </div>
                     </label>
                 </div>
@@ -37,10 +72,9 @@ const NewMatchForm = () => {
                     <label>Select a player:
                         <div>
                             <select name="players" id="players" multiple onChange={team1PlayersHandler}>
-                                <option value="Rashid">Rashid</option>
-                                <option value="Abbas">Abbas</option>
-                                <option value="Sohel">Sohel</option>
-                                <option value="Amir">Amir</option>
+                                {players.map((e) => {
+                                    return <option value={e._id} key={e._id}>{e.name}</option>
+                                })}
                             </select>
                         </div>
                     </label>
@@ -49,7 +83,7 @@ const NewMatchForm = () => {
                 <div>
                     <label> Enter Team 2 name
                         <div>
-                            <input type="text" ref={team2} />
+                            <input type="text" ref={team2Ref} />
                         </div>
                     </label>
                 </div>
@@ -57,11 +91,18 @@ const NewMatchForm = () => {
                     <label>Select a player:
                         <div>
                             <select name="players" id="players" multiple onChange={team2PlayersHandler}>
-                                <option value="Rashid">Rashid</option>
-                                <option value="Abbas">Abbas</option>
-                                <option value="Sohel">Sohel</option>
-                                <option value="Amir">Amir</option>
+                                {availablePlayers.map((e) => {
+                                    return <option value={e._id} key={e._id}>{e.name}</option>
+                                }
+                                )}
                             </select>
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <label> Match Location
+                        <div>
+                            <input type="text" ref={locationRef} />
                         </div>
                     </label>
                 </div>

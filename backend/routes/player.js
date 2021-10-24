@@ -9,10 +9,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     console.log(req.body)
-    // const data = req.body
-    // const player = await new Player(data)
-    // await player.save()
-    res.send('Data added')
+    const data = req.body
+    const player = await new Player(data)
+    await player.save()
+    res.json('Data added')
 })
 
 module.exports = router
