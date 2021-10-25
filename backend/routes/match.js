@@ -6,7 +6,15 @@ const Players = require('../models/players')
 
 
 router.get('/', async (req, res) => {
-    const matches = await Match.find({})
+    const matches = await Match.find({}).populate({
+        path: 'team1',
+        populate: { path: 'players' }
+    })
+        .populate({
+            path: 'team2',
+            populate: { path: 'players' }
+        })
+    console.log(matches)
     res.send(matches)
 })
 

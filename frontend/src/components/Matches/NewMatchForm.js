@@ -55,8 +55,6 @@ const NewMatchForm = () => {
             .catch(e => { console.log("Error Saving Match" + e) })
     }
 
-
-
     return (
         <div>
             <form onSubmit={newMatchHandler}>
@@ -72,8 +70,8 @@ const NewMatchForm = () => {
                     <label>Select a player:
                         <div>
                             <select name="players" id="players" multiple onChange={team1PlayersHandler}>
-                                {players.map((e) => {
-                                    return <option value={e._id} key={e._id}>{e.name}</option>
+                                {players.map((e, i) => {
+                                    return <option value={e._id} key={i}>{e.name}</option>
                                 })}
                             </select>
                         </div>
@@ -91,8 +89,8 @@ const NewMatchForm = () => {
                     <label>Select a player:
                         <div>
                             <select name="players" id="players" multiple onChange={team2PlayersHandler}>
-                                {availablePlayers.map((e) => {
-                                    return <option value={e._id} key={e._id}>{e.name}</option>
+                                {availablePlayers.map((e, i) => {
+                                    return <option value={e._id} key={i}>{e.name}</option>
                                 }
                                 )}
                             </select>

@@ -1,37 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 const ScoreEntry = () => {
     const [ball, setBall] = useState("Legal")
     const [bat, setBat] = useState("No Runs")
     const [dismissal, setDismissal] = useState("None")
-
-    const [batsman1, setBatsman1] = useState({
-        name: "Aadil",
-        balls: 0,
-        runs: 0,
-        fours: 0,
-        sixes: 0,
-        onStrike: true
-    })
-    const [batsman2, setBatsman2] = useState({
-        name: "Asim",
-        balls: 0,
-        runs: 0,
-        fours: 0,
-        sixes: 0,
-        onStrike: false
-    })
-
-    const [matchBall, setMatchBall] = useState({
-        ballNumber: 0,
-        ballType: "Legal",
-        runType: "No Runs",
-        dismissalType: "none",
-        onStrikeBatsman: batsman1.name,
-        nonStrikeBatsman: batsman2.name,
-        bowler: null,
-
-    })
 
     const ballHandler = (e) => {
         setBall(e.target.value)
@@ -46,16 +18,6 @@ const ScoreEntry = () => {
 
     const matchBallHandler = (e) => {
         e.preventDefault()
-        setMatchBall((prevState) => {
-            return {
-                ...prevState,
-                ballNumber: prevState.ballNumber + 1,
-                ballType: ball,
-                runType: bat,
-                dismissalType: dismissal,
-            }
-        }
-        )
     }
     return (
         <div>
