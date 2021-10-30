@@ -42,7 +42,7 @@ const NewMatchForm = () => {
             },
             location: locationRef.current.value
         }
-        fetch('http://localhost:3001/matches', {
+        fetch('http://localhost:3001/matches/new', {
             method: 'POST',
             body: JSON.stringify(newMatchData),
             headers: {

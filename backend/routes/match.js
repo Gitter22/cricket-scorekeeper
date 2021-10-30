@@ -14,11 +14,10 @@ router.get('/', async (req, res) => {
             path: 'team2',
             populate: { path: 'players' }
         })
-    console.log(matches)
     res.send(matches)
 })
 
-router.post('/', async (req, res) => {
+router.post('/new', async (req, res) => {
     const { location, team1, team2 } = req.body
     console.log(team1, team2)
     const match = await new Match({ location })
@@ -32,23 +31,22 @@ router.post('/', async (req, res) => {
     match.team1 = insertedTeams[0]._id;
     match.team2 = insertedTeams[1]._id;
     await match.save()
-    console.log(insertedTeams, match)
     res.send(insertedTeams)
 })
 
-// app.get('/matches/new',(req,res)=>{
-//     res.send("new match")
-// })
 
-// app.post('/matches',(req,res)=>{
-// const data=req.body
-// const match=new Match({data})
-// res.send('post request')
-// })
-
-// app.get('/match/:matchid', (req,res)=>{
-
-// })
+router.get('/:id', async (req, res) => {
+    console.log(req.params.id)
+    const match = await Match.findById(req.params.id).populate({
+        path: 'team1',
+        populate: { path: 'players' }
+    })
+        .populate({
+            path: 'team2',
+            populate: { path: 'players' }
+        })
+    res.send(match)
+})
 
 // app.patch('/match/:matchid',(req,res)=>{
 

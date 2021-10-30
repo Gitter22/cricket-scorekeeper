@@ -11,9 +11,12 @@ const MatchList = () => {
 
     }, [])
     return (
-        <div className="matches">
-            {matches.map(match => <MatchItem match={match} />)}
-        </div>
+        <>
+            <h1>Matches</h1>
+            <div className="matches">
+                {matches.map(match => <MatchItem match={match} key={match._id} />)}
+            </div>
+        </>
     )
 }
 

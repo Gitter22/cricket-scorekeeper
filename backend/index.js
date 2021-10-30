@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 
 mongoose.connect('mongodb://localhost:27017/cricketscorekeeper')
     .then(() => {
-        console.log("database connection successul")
+        console.log("database connection successful")
     })
     .catch((e) => {
         console.log("Something went wrong with the database", e)

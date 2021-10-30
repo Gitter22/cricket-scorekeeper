@@ -6,7 +6,7 @@ const Player = require('./players')
 const BallSchema = new Schema({
   matchId: {
     type: Schema.Types.ObjectId,
-    ref: Match,
+    ref: 'Match',
   },
   innings: {
     type: String,
@@ -19,15 +19,15 @@ const BallSchema = new Schema({
 
   onStrikeBatsman: {
     type: Schema.Types.ObjectId,
-    ref: Player,
+    ref: 'Player',
   },
   nonStrikeBatsman: {
     type: Schema.Types.ObjectId,
-    ref: Player,
+    ref: 'Player',
   },
   bowler: {
     type: Schema.Types.ObjectId,
-    ref: Player,
+    ref: 'Player',
   },
 
 });
