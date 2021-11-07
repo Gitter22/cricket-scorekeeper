@@ -1,20 +1,23 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Match = require("./matches");
-const Player = require('./players')
+
 
 const BallSchema = new Schema({
   matchId: {
     type: Schema.Types.ObjectId,
     ref: 'Match',
   },
-  innings: {
-    type: String,
-    enum: ["1st", "2nd"],
-  },
+  innings: { type: Number, },
+  ballSequence: { type: Number },
+  noBallRuns: { type: Number },
+  wideRuns: { type: Number },
+  byeRuns: { type: Number },
+  batsmanRuns: { type: Number },
+  bowlerRuns: { type: Number },
+  teamRuns: { type: Number },
+  overNumber: { type: Number },
   ballNumber: { type: Number },
-  ballType: { type: String },
-  runType: { type: String },
+  didPlayersCross: { type: Boolean },
   dismissalType: { type: String },
 
   onStrikeBatsman: {

@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 
-const ScoreEntry = () => {
+const ScoreEntry = (props) => {
     const [ball, setBall] = useState("Legal")
+    const [bye, setBye] = useState("None")
     const [bat, setBat] = useState("No Runs")
     const [dismissal, setDismissal] = useState("None")
 
     const ballHandler = (e) => {
         setBall(e.target.value)
+    }
+    const byeHandler = (e) => {
+        setBye(e.target.value)
     }
     const batHandler = (e) => {
         setBat(e.target.value)
@@ -16,13 +20,20 @@ const ScoreEntry = () => {
         setDismissal(e.target.value)
     }
 
-    const matchBallHandler = (e) => {
+    const ballRecordHandler = (e) => {
         e.preventDefault()
+        let ballRecord = {
+            ballType: ball,
+            byeType: bye,
+            runType: bat,
+            dismissalType: dismissal,
+        }
+        props.matchBallHandler(ballRecord)
     }
     return (
         <div>
             <h3>Record ball</h3>
-            <form onSubmit={matchBallHandler}>
+            <form onSubmit={ballRecordHandler}>
                 <p> Delivery </p>
                 <ul>
                     <li><label>
@@ -35,6 +46,17 @@ const ScoreEntry = () => {
                     </li>
                     <li><label><input type="radio" name="ball" value="Wide" checked={ball === "Wide"} onChange={ballHandler} />
                         Wide</label>
+                    </li>
+                </ul>
+                <p> Bye </p>
+                <ul>
+                    <li><label>
+
+                        <input type="radio" name="bye" value="None" checked={bye === "None"} onChange={byeHandler} />
+                        None</label>
+                    </li>
+                    <li><label><input type="radio" name="bye" value="Bye" checked={bye === "Bye"} onChange={byeHandler} />
+                        Bye or Leg bye</label>
                     </li>
                 </ul>
                 <p> Runs </p>
@@ -87,9 +109,11 @@ const ScoreEntry = () => {
                 </ul>
                 <div>
                     <span>Ball:{ball}</span>
+                    <span>Bye:{bye}</span>
                     <span>Runs:{bat}</span>
                     <span>Wicket:{dismissal}</span>
                 </div>
+                {/* {props.matchstatus === "not started" && <button onClick={selectPlayersHandler}>Select Players</button>} */}
                 <button type="submit">Save and Next Ball</button>
             </form>
         </div>

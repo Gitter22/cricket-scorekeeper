@@ -1,6 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 
 const NewMatchForm = () => {
+
+    const history = useHistory()
+
     const [players, setPlayers] = useState([])
     const [availablePlayers, setAvailablePlayers] = useState([players])
 
@@ -40,7 +44,8 @@ const NewMatchForm = () => {
                 name: team2Ref.current.value,
                 players: team2Players
             },
-            location: locationRef.current.value
+            location: locationRef.current.value,
+            status: "not started"
         }
         fetch('http://localhost:3001/matches/new', {
             method: 'POST',
@@ -51,7 +56,9 @@ const NewMatchForm = () => {
             }
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(match => {
+                history.push(`/matches/${match._id}`)
+            })
             .catch(e => { console.log("Error Saving Match" + e) })
     }
 

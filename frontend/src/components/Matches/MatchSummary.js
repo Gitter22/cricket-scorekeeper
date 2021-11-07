@@ -15,7 +15,7 @@ const MatchSummary = () => {
     return (
         <div>
             <h1> Match Summary Page</h1>
-            <h1>{match.location}</h1>
+            <h1>{match.status}</h1>
             <Link to={`/matchcenter/${matchId}`}> Go To Match Center</Link>
         </div >
     )
