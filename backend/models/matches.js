@@ -15,7 +15,23 @@ const MatchSchema = new Schema({
   },
   status: {
     type: String,
+  },
+  scoreCard: {
+    team1: {
+      runs: { type: Number },
+      balls: { type: String },
+      wickets: { type: Number }
+    },
+    team2: {
+      runs: { type: Number },
+      balls: { type: String },
+      wickets: { type: Number }
+    },
+  },
+  result: {
+    type: String,
   }
+
 });
 
 module.exports = new mongoose.model('Match', MatchSchema)

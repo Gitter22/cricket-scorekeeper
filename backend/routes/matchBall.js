@@ -8,14 +8,14 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const { matchId, innings, ballType, byeType, runType, dismissalType, didPlayersCross, onStrikeBatsman, nonStrikeBatsman, bowler, overNumber, ballNumber } = req.body
+    const { matchId, innings, ballType, byeType, runType, dismissalType, didPlayersCross, onStrikeBatsman, nonStrikeBatsman, bowler, overNumber, ballNumber, } = req.body
     let runs = typeARuns(runType)
     console.log(req.body.matchId)
     let matchBall = {
         matchId,
         innings,
         ballSequence: 1,
-        noBallRuns: ballType === "No Ball" ? byeType === 'Bye' ? 1 : runs + 1 : 0,
+        noBallRuns: ballType === "No Ball" ? 1 : 0,
         wideRuns: ballType === "Wide" ? runs + 1 : 0,
         byeRuns: byeType === "Bye" ? runs : 0,
         dismissalType,

@@ -6,8 +6,8 @@ const Matches = () => {
 
     return (
         <div>
-            <MatchList />
             <Link to="/matches/new">Create New Match</Link>
+            <MatchList />
 
 
         </div >

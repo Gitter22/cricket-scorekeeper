@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Navbar from './components/NavBar';
+import Navbar from './components/Header/NavBar';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Matches from './pages/Matches';

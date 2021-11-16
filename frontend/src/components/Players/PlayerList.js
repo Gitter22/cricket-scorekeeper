@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import MatchItem from './MatchItem'
+import Player from './Player'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 
 
-const MatchList = () => {
-    const [matches, setMatches] = useState([])
+const PlayerList = () => {
+    const [players, setPlayers] = useState([])
     useEffect(() => {
-        fetch('http://localhost:3001/matches')
+        fetch('http://localhost:3001/players')
             .then(res => res.json())
-            .then(data => setMatches(data))
+            .then(data => setPlayers(data))
             .catch(e => console.log("Could not load match list" + e))
 
     }, [])
     return (
         <>
-            <h1>Matches</h1>
+            <h1>Players</h1>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
-                    {matches.map(match =>
+                    {players.map(player =>
                         <Grid item xs={4}>
-                            <MatchItem match={match} key={match._id} />
+                            <Player player={player} key={player._id} />
                         </Grid>
                     )}
                 </Grid>
@@ -30,4 +30,4 @@ const MatchList = () => {
     )
 }
 
-export default MatchList
+export default PlayerList
