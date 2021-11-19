@@ -7,6 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 
 export default function MatchItem({ match }) {
     const history = useHistory()
@@ -14,6 +15,7 @@ export default function MatchItem({ match }) {
         history.push(`/matches/${id}`)
     }
     return (
+
         <Card sx={{ minWidth: 275 }}>
             <CardContent>
                 <div >
@@ -26,5 +28,6 @@ export default function MatchItem({ match }) {
                 <Button size="small">Match Center</Button>
             </CardActions>
         </Card>
+
     );
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import MatchItem from './MatchItem'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Pagination from '../utils/Pagination'
 
 
 
@@ -16,18 +17,35 @@ const MatchList = () => {
     }, [])
     return (
         <>
-            <h1>Matches</h1>
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    {matches.map(match =>
-                        <Grid item xs={4}>
-                            <MatchItem match={match} key={match._id} />
+
+            <Grid container spacing={2}>
+
+                {matches.length > 0 ? (
+                    <Box sx={{ flexGrow: 1 }}>
+                        <Grid item>
+                            <Pagination
+                                data={matches}
+                                RenderComponent={MatchItem}
+                                title="Matches"
+                                pageLimit={5}
+                                dataLimit={5}
+                            />
                         </Grid>
-                    )}
-                </Grid>
-            </Box>
+                    </Box>
+
+                ) : (
+                    <h1>No Matches to display</h1>
+                )}
+
+            </Grid>
+
         </>
     )
 }
 
 export default MatchList
+
+// {matches.map(match =>
+//     <Grid item xs={4}>
+//         <MatchItem match={match} key={match._id} />
+//     </Grid>
