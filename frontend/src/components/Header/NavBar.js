@@ -10,6 +10,9 @@ const Navbar = () => {
     const authCtx = useContext(AuthContext)
 
     const isLoggedIn = authCtx.isLoggedIn
+    const logoutHandler = () => {
+        authCtx.logout()
+    }
 
     return (
         <div>
@@ -18,7 +21,7 @@ const Navbar = () => {
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/matches">Matches</NavLink></li>
                     <li><NavLink to="/players">Players</NavLink></li>
-                    {isLoggedIn ? <li><NavLink to="/logout">Logout</NavLink></li>
+                    {isLoggedIn ? <li><button onClick={logoutHandler}>Logout</button></li>
                         : <li><NavLink to="/user/login">Login</NavLink></li>}
                 </ul >
             </nav >

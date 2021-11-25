@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import AuthContext from '../store/auth-context'
 import './Login.css'
 
@@ -10,6 +11,8 @@ const Login = () => {
     const toggleFormHandler = () => {
         setIsLogin(isLogin => !isLogin)
     }
+
+    const history = useHistory()
 
     const handleChange = (e) => {
         setState({
@@ -29,7 +32,10 @@ const Login = () => {
             }
         })
             .then(res => res.json())
-            .then(data => authCtx.login(data.token))
+            .then(data => {
+                authCtx.login(data.token)
+                history.replace('/')
+            })
             .catch(evnt => console.log("Server Error", evnt))
     }
     return (
